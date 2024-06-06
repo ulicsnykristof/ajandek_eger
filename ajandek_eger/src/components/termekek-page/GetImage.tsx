@@ -1,9 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
-
 class GetImage extends Component<any, any> {
   state = { source: null };
-
   componentDidMount() {
     axios
       .get("http://localhost:8080/images/" + this.props.ck, {
@@ -16,6 +14,7 @@ class GetImage extends Component<any, any> {
             ""
           )
         );
+
         this.setState({ source: "data:;base64," + base64 });
       });
   }
@@ -26,7 +25,14 @@ class GetImage extends Component<any, any> {
         <img src={this.state.source} alt="kep" width="100px" height="100px" />
       );
     } else {
-      return <p>Error</p>;
+      return (
+        <img
+          src="../src/assets/no_image.jpg"
+          alt="kep"
+          width="100px"
+          height="100px"
+        />
+      );
     }
   }
 }
