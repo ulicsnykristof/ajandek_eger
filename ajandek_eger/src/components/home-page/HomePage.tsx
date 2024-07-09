@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
 //import CardGroup from "react-bootstrap/CardGroup";
 //import Row from "react-bootstrap/Row";
 
@@ -15,7 +15,9 @@ function HomePage() {
           <div className="inner-div">
             <h5>Termékek</h5>
             <p>Termék létrehozása, törlése, módosítása.</p>
-            <Button>Tovább</Button>
+            <a className="mybutton" href="/termekek">
+              Tovább
+            </a>
           </div>
         </div>
         <div className="in-div">
@@ -27,7 +29,9 @@ function HomePage() {
           <div className="inner-div">
             <h5>Adminisztráció</h5>
             <p>Termék bevételezése, kiadása.</p>
-            <Button>Tovább</Button>
+            <a className="mybutton" href="/termekek">
+              Tovább
+            </a>
           </div>
         </div>
         <div className="in-div">
@@ -39,7 +43,9 @@ function HomePage() {
           <div className="inner-div">
             <h5>Statisztikák</h5>
             <p>Diagrammok, történések.</p>
-            <Button>Tovább</Button>
+            <a className="mybutton" href="/termekek">
+              Tovább
+            </a>
           </div>
         </div>
         <div className="in-div">
@@ -51,7 +57,9 @@ function HomePage() {
           <div className="inner-div">
             <h5>Aktivitás</h5>
             <p>Változások nyomonkövetése.</p>
-            <Button>Tovább</Button>
+            <a className="mybutton" href="/termekek">
+              Tovább
+            </a>
           </div>
         </div>
       </div>

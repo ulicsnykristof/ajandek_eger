@@ -22,3 +22,12 @@
 .termekek-pics {
   width: 100%;
 }
+
+.mybutton {
+  padding: 1px 6px;
+  border: 1px outset buttonborder;
+  border-radius: 3px;
+  text-decoration: none;
+  color: black;
+  background-color: lightskyblue;
+}
