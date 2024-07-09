@@ -13,8 +13,13 @@ function UploadImg() {
     setFile(target.files[0]);
   }
 
-  async function handleClickKep(e: React.SyntheticEvent) {
+  async function handleClick(e: React.SyntheticEvent) {
     e.preventDefault;
+
+    try {
+      console.log(termek);
+      await axios.post("http://localhost:8080/addTermek", termek);
+    } catch (err) {}
 
     if (typeof file === "undefined") return;
     const formData = new FormData();
@@ -28,13 +33,6 @@ function UploadImg() {
       body: formData,
     });
   }
-
-  const handleClicktermek = async () => {
-    try {
-      console.log(termek);
-      await axios.post("http://localhost:8080/addTermek", termek);
-    } catch (err) {}
-  };
 
   const [termek, setTermek] = useState({
     cikkszam: null,
@@ -143,17 +141,14 @@ function UploadImg() {
           onChange={handleChange}
           name="meret"
         />
-        <br />
-        <br />
-        <Button type="submit" onClick={handleClicktermek}>
-          Feltöltés
-        </Button>
 
         <br />
         <br />
         <input type="file" name="image" onChange={handleOnChange} />
-        <Button type="submit" onClick={handleClickKep}>
-          Kép Feltöltés
+        <br />
+        <br />
+        <Button type="submit" onClick={handleClick}>
+          Feltöltés
         </Button>
       </div>
     </>
