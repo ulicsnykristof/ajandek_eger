@@ -3,7 +3,7 @@ import UploadImg from "./UploadImg";
 function TermekekPage() {
   return (
     <>
-      <div>
+      <div className="termek-main-grid">
         <TermekekTable />
         <UploadImg />
       </div>

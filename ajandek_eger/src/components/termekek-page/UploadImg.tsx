@@ -53,17 +53,10 @@ function UploadImg() {
 
   return (
     <>
-      <div
-        style={{
-          float: "right",
-          width: "30%",
-          marginRight: "8%",
-          marginTop: "30px",
-        }}
-      >
+      <div className="termek-upload-main">
         <h4>Termék adatok</h4>
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Cikkszam"
           onChange={handleChange}
@@ -72,7 +65,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Vonalkód"
           onChange={handleChange}
@@ -81,7 +74,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Név"
           onChange={handleChange}
@@ -90,7 +83,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Nettó eladási ár"
           onChange={handleChange}
@@ -99,7 +92,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Bruttó eladási ár"
           onChange={handleChange}
@@ -108,7 +101,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Darabszám"
           onChange={handleChange}
@@ -117,7 +110,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Típus"
           onChange={handleChange}
@@ -126,7 +119,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Szín"
           onChange={handleChange}
@@ -135,7 +128,7 @@ function UploadImg() {
         <br />
         <br />
         <input
-          style={{ width: "400px" }}
+          className="termek-upload-input"
           type="text"
           placeholder="Méret"
           onChange={handleChange}

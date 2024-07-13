@@ -48,39 +48,37 @@ function TermekekTable() {
 
   return (
     <>
-      <div style={{ marginTop: "30px", marginLeft: "40px", float: "left" }}>
-        <div style={{ width: "70%" }}>
-          <nav>
-            <ul className="pagination justify-content-center">
-              <li className="page-item">
-                <a className="page-link" onClick={goToPrevPage} href="#">
-                  Előző
-                </a>
-              </li>
-              {pageNumbers.map((pgNumber) => (
-                <li
-                  key={pgNumber}
-                  className={`page-item ${
-                    currentPage == pgNumber ? "active" : ""
-                  } `}
+      <div className="termek-table-main">
+        <nav className="termek-table-pagination">
+          <ul className="pagination justify-content-center">
+            <li className="page-item">
+              <a className="page-link" onClick={goToPrevPage} href="#">
+                Előző
+              </a>
+            </li>
+            {pageNumbers.map((pgNumber) => (
+              <li
+                key={pgNumber}
+                className={`page-item ${
+                  currentPage == pgNumber ? "active" : ""
+                } `}
+              >
+                <a
+                  onClick={() => setCurrentPage(pgNumber)}
+                  className="page-link"
+                  href="#"
                 >
-                  <a
-                    onClick={() => setCurrentPage(pgNumber)}
-                    className="page-link"
-                    href="#"
-                  >
-                    {pgNumber}
-                  </a>
-                </li>
-              ))}
-              <li className="page-item">
-                <a className="page-link" onClick={goToNextPage} href="#">
-                  Következő
+                  {pgNumber}
                 </a>
               </li>
-            </ul>
-          </nav>
-        </div>
+            ))}
+            <li className="page-item">
+              <a className="page-link" onClick={goToNextPage} href="#">
+                Következő
+              </a>
+            </li>
+          </ul>
+        </nav>
 
         <Table responsive style={{ width: "800px" }}>
           <tbody>
@@ -119,8 +117,6 @@ function TermekekTable() {
           </tbody>
         </Table>
       </div>
-
-      <div style={{ marginTop: "40px", float: "right" }}></div>
     </>
   );
 }
