@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import Input from "./Input";
+import { useForm, FormProvider } from "react-hook-form";
 
 function UploadImg() {
   const [file, setFile] = useState<File | undefined>();
@@ -13,9 +15,11 @@ function UploadImg() {
     setFile(target.files[0]);
   }
 
-  async function handleClick(e: React.SyntheticEvent) {
-    e.preventDefault;
+  const [success, setSuccess] = useState(false);
 
+  const methods = useForm();
+
+  const onSubmit = methods.handleSubmit(async () => {
     try {
       console.log(termek);
       await axios.post("http://localhost:8080/addTermek", termek);
@@ -32,7 +36,8 @@ function UploadImg() {
       method: "POST",
       body: formData,
     });
-  }
+    setSuccess(true);
+  });
 
   const [termek, setTermek] = useState({
     cikkszam: null,
@@ -55,94 +60,89 @@ function UploadImg() {
     <>
       <div className="termek-upload-main">
         <h4>Termék adatok</h4>
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Cikkszam"
-          onChange={handleChange}
-          name="cikkszam"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Vonalkód"
-          onChange={handleChange}
-          name="vonalkod"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Név"
-          onChange={handleChange}
-          name="nev"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Nettó eladási ár"
-          onChange={handleChange}
-          name="eladarnetto"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Bruttó eladási ár"
-          onChange={handleChange}
-          name="eladarbrutto"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Darabszám"
-          onChange={handleChange}
-          name="db"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Típus"
-          onChange={handleChange}
-          name="tipus"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Szín"
-          onChange={handleChange}
-          name="szin"
-        />
-        <br />
-        <br />
-        <input
-          className="termek-upload-input"
-          type="text"
-          placeholder="Méret"
-          onChange={handleChange}
-          name="meret"
-        />
 
-        <br />
-        <br />
-        <input type="file" name="image" onChange={handleOnChange} />
-        <br />
-        <br />
-        <Button type="submit" onClick={handleClick}>
-          Feltöltés
-        </Button>
+        <FormProvider {...methods}>
+          <form onSubmit={(e) => e.preventDefault()} noValidate>
+            <Input
+              name="cikkszam"
+              type="text"
+              placeholder="Cikkszam"
+              className="termek-upload-input"
+              onChange={handleChange}
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Vonalkód"
+              onChange={handleChange}
+              name="vonalkod"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Név"
+              onChange={handleChange}
+              name="nev"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Nettó eladási ár"
+              onChange={handleChange}
+              name="eladarnetto"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Bruttó eladási ár"
+              onChange={handleChange}
+              name="eladarbrutto"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Darabszám"
+              onChange={handleChange}
+              name="db"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Típus"
+              onChange={handleChange}
+              name="tipus"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Szín"
+              onChange={handleChange}
+              name="szin"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Méret"
+              onChange={handleChange}
+              name="meret"
+            />
+            {success && <p className="upload-success">Sikeres feltöltés</p>}
+            <input type="file" name="image" onChange={handleOnChange} />
+            <br />
+            <br />
+            <Button type="submit" onClick={onSubmit}>
+              Feltöltés
+            </Button>
+          </form>
+        </FormProvider>
       </div>
     </>
   );

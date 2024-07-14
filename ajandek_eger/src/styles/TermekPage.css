@@ -20,4 +20,11 @@
 
 .termek-upload-input {
   width: 400px;
+  margin-bottom: 26px;
+}
+
+.upload-success {
+  color: "green";
+  position: "absolute";
+  margin-top: "-24px";
 }
