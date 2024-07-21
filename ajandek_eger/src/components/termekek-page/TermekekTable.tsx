@@ -110,7 +110,12 @@ function TermekekTable() {
                 <td width={300}>
                   <p>{termek.nev}</p>
                   <p>{termek.cikkszam}</p>
-                  <p>{termek.db} db</p>
+                  <p>
+                    {termek.db} db{" "}
+                    {termek.db < termek.fogyas ? (
+                      <span style={{ color: "red" }}>Alacsony készlet</span>
+                    ) : null}
+                  </p>
                 </td>
                 <td width={120}>
                   <p
