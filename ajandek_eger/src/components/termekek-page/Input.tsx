@@ -24,10 +24,7 @@ function Input(props: any) {
       >
         <AnimatePresence mode="wait" initial={false}>
           {isInvalid && (
-            <InputError
-              message="Hibás beviteli érték"
-              key="Hibás beviteli érték"
-            />
+            <InputError message="Hibás beviteli érték" key="required" />
           )}
         </AnimatePresence>
       </div>

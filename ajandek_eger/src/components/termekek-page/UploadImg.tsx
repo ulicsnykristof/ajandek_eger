@@ -43,10 +43,10 @@ function UploadImg() {
     cikkszam: null,
     vonalkod: null,
     nev: null,
-    img: null,
     eladarnetto: null,
     eladarbrutto: null,
     db: null,
+    fogyas: null,
     tipus: null,
     szin: null,
     meret: null,
@@ -109,6 +109,14 @@ function UploadImg() {
               placeholder="Darabszám"
               onChange={handleChange}
               name="db"
+            />
+
+            <Input
+              className="termek-upload-input"
+              type="text"
+              placeholder="Kritikus darabszám"
+              onChange={handleChange}
+              name="fogyas"
             />
 
             <Input
