@@ -1,0 +1,36 @@
+.admin-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 100px;
+  margin-top: 60px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: aqua;
+}
+
+.admin-in-left-div {
+  background-color: blue;
+}
+
+.admin-in-right-div {
+  background-color: blueviolet;
+}
+
+.admin-table-button-plus {
+  margin-top: 40px;
+  margin-right: 5px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+}
+
+.admin-table-button-minus {
+  margin-top: 40px;
+  width: 44px;
+  height: 44px;
+}
+
+.admin-generated-main {
+  height: 50px;
+  background-color: red;
+}
