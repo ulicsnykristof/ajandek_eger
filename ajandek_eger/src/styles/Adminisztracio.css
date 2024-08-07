@@ -5,32 +5,100 @@
   margin-top: 60px;
   margin-left: 50px;
   margin-right: 50px;
-  background-color: aqua;
 }
 
 .admin-in-left-div {
-  background-color: blue;
+  background-color: rgb(230, 230, 230);
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .admin-in-right-div {
-  background-color: blueviolet;
+  background-color: rgb(230, 230, 230);
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.admin-table-button-plus {
-  margin-top: 40px;
-  margin-right: 5px;
-  width: 44px;
-  height: 44px;
-  text-align: center;
+.admin-right-buttons {
+  padding-left: 140px;
 }
 
-.admin-table-button-minus {
-  margin-top: 40px;
-  width: 44px;
-  height: 44px;
+.admin-right-buttons-mentes {
+  margin-right: 10px;
 }
 
 .admin-generated-main {
   height: 50px;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-color: black;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.admin-generated-inner{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.admin-table-row {
+  height: 80px;
+}
+
+.admin-table-td-img {
+  width: 80px;
+}
+
+.admin-table-td-nev {
+  width: 220px;
+}
+
+.admin-table-p-nev {
+  font-size: 22px;
+  margin-top: 22px;
+}
+
+.admin-table-td-db {
+  width: 240px;
+}
+
+.admin-table-p-db {
+  font-size: 24px;
+  margin-top: 22px;
+}
+
+
+.admin-table-p-nev {
+  font-size: 24px;
+}
+
+.admin-table-td-ar {
+  width: 120px;
+}
+
+.admin-table-p-ar {
+  font-size: 24px;
+  margin-top: 22px;
+}
+
+.admin-table-td-btn {
+  width: 200px;
+}
+
+.admin-table-button-plus {
+  margin-top: 22px;
+  margin-right: 5px;
+  width: 44px;
+  height: 44px;
+}
+
+.admin-table-button-minus {
+  margin-top: 22px;
+  width: 44px;
+  height: 44px;
+}
+
+.admin-table-td-btn-text {
+  font-size: 30px;
+  font-weight: bold;
 }

@@ -62,10 +62,10 @@ function AdministrationPage() {
 
     newDiv.innerHTML = `
     <div id="admin-generated-main" class="admin-generated-main">
-      <span>${elementName}</span><span> + 1</span>
+      <div class="admin-generated-inner"><span>${elementName}</span><span> + 1</span></div>
     </div>`;
 
-    const parent1 = document.getElementById("teszt");
+    const parent1 = document.getElementById("admin-generated-parent");
 
     parent1?.appendChild(newDiv);
 
@@ -84,10 +84,10 @@ function AdministrationPage() {
 
     newDiv.innerHTML = `
     <div id="admin-generated-main" class="admin-generated-main">
-      <span>${elementName}</span><span> - 1</span>
+      <div class="admin-generated-inner"><span>${elementName}</span><span> - 1</span></div>
     </div>`;
 
-    const parent1 = document.getElementById("teszt");
+    const parent1 = document.getElementById("admin-generated-parent");
 
     parent1?.appendChild(newDiv);
 
@@ -102,7 +102,7 @@ function AdministrationPage() {
   /////////////////////////////////////////////////////////////////////////
 
   function clearItems() {
-    const parent1 = document.getElementById("teszt");
+    const parent1 = document.getElementById("admin-generated-parent");
 
     parent1?.remove();
 
@@ -147,48 +147,70 @@ function AdministrationPage() {
     <>
       <div className="admin-main-grid">
         <div className="admin-in-left-div">
+          <nav className="termek-table-pagination">
+            <ul className="pagination justify-content-center">
+              <li className="page-item">
+                <a className="page-link" onClick={goToPrevPage} href="#">
+                  Előző
+                </a>
+              </li>
+              {pageNumbers.map((pgNumber) => (
+                <li
+                  key={pgNumber}
+                  className={`page-item ${
+                    currentPage == pgNumber ? "active" : ""
+                  } `}
+                >
+                  <a
+                    onClick={() => setCurrentPage(pgNumber)}
+                    className="page-link"
+                    href="#"
+                  >
+                    {pgNumber}
+                  </a>
+                </li>
+              ))}
+              <li className="page-item">
+                <a className="page-link" onClick={goToNextPage} href="#">
+                  Következő
+                </a>
+              </li>
+            </ul>
+          </nav>
+
           <div className="admin-in-table">
             <Table responsive style={{ width: "800px" }}>
               <tbody>
                 {currentRecords.map((termek) => (
-                  <tr key={termek.cikkszam + "00"} style={{ height: "100px" }}>
-                    <td width={100}>
+                  <tr className="admin-table-row" key={termek.cikkszam + "00"}>
+                    <td className="admin-table-td-img">
                       <GetImage ck={termek.cikkszam} />
                     </td>
-                    <td width={300}>
-                      <p>{termek.nev}</p>
-                      <p>{termek.cikkszam}</p>
-                      <p>
-                        {termek.db} db{" "}
-                        {termek.db < termek.fogyas ? (
-                          <span style={{ color: "red" }}>Alacsony készlet</span>
-                        ) : null}
-                      </p>
+                    <td className="admin-table-td-nev">
+                      <p className="admin-table-p-nev">{termek.nev}</p>
                     </td>
-                    <td width={120}>
-                      <p
-                        style={{
-                          marginTop: "40px",
-                          fontSize: "20px",
-                        }}
-                      >
+                    <td className="admin-table-td-db">
+                      <p className="admin-table-p-db">{termek.db} db </p>
+                    </td>
+                    <td className="admin-table-td-ar">
+                      <p className="admin-table-p-ar">
                         {termek.eladarbrutto} Ft
                       </p>
                     </td>
-                    <td width={200}>
+                    <td className="admin-table-td-btn">
                       <Button
                         onClick={addElement}
                         className="admin-table-button-plus"
                         id={termek.nev}
                       >
-                        <p style={{ fontSize: "30px" }}>+</p>
+                        <p className="admin-table-td-btn-text">+</p>
                       </Button>
                       <Button
                         onClick={subElement}
                         className="admin-table-button-minus"
                         id={termek.nev}
                       >
-                        <p style={{ fontSize: "30px" }}>-</p>
+                        <p className="admin-table-td-btn-text">-</p>
                       </Button>
                     </td>
                   </tr>
@@ -199,11 +221,18 @@ function AdministrationPage() {
         </div>
         <div className="admin-in-right-div">
           <div className="admin-right-buttons">
-            <Button onClick={uploadItems}>Mentés</Button>
-            <Button onClick={clearItems}>Mégse</Button>
+            <Button
+              className="admin-right-buttons-mentes"
+              onClick={uploadItems}
+            >
+              Mentés
+            </Button>
+            <Button className="admin-right-buttons-megse" onClick={clearItems}>
+              Mégse
+            </Button>
           </div>
           <div>
-            <div id="teszt"></div>
+            <div id="admin-generated-parent"></div>
           </div>
         </div>
       </div>
