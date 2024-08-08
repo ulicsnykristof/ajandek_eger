@@ -55,19 +55,40 @@ function AdministrationPage() {
 
   ///////////////////////////////////////////////////////////////////////////
 
+  let alreadyAdded: string[] = [];
+
   const addElement = (e: MouseEvent<HTMLElement>) => {
     const elementName = e.currentTarget.id;
 
-    const newDiv = document.createElement("div");
+    let count = 1;
+    let vm = false;
+    for (let i = 0; i < alreadyAdded.length; i++) {
+      if (alreadyAdded[i] === elementName) {
+        count++;
+        vm = true;
+      }
+    }
 
-    newDiv.innerHTML = `
+    alreadyAdded.push(elementName);
+
+    const idname = elementName + "count";
+
+    if (vm) {
+      const update = document.getElementById(idname);
+      console.log(update);
+      const newSpan = document.createElement("span");
+      newSpan.innerHTML = `<span id="${idname}"> +${count}</span>`;
+      update?.parentNode?.replaceChild(newSpan, update);
+    } else {
+      const newDiv = document.createElement("div");
+
+      newDiv.innerHTML = `
     <div id="admin-generated-main" class="admin-generated-main">
-      <div class="admin-generated-inner"><span>${elementName}</span><span> + 1</span></div>
+      <div class="admin-generated-inner"><span>${elementName}</span><span id="${idname}"> +${count}</span></div>
     </div>`;
-
-    const parent1 = document.getElementById("admin-generated-parent");
-
-    parent1?.appendChild(newDiv);
+      const parent1 = document.getElementById("admin-generated-parent");
+      parent1?.appendChild(newDiv);
+    }
 
     termekek.map((t) => {
       if (t.nev === elementName) {
@@ -75,21 +96,42 @@ function AdministrationPage() {
         inputs.push(t);
       }
     });
+
+    console.log(inputs);
   };
 
   function subElement(e: MouseEvent<HTMLElement>) {
     const elementName = e.currentTarget.id;
 
-    const newDiv = document.createElement("div");
+    let count = -1;
+    let vm = false;
+    for (let i = 0; i < alreadyAdded.length; i++) {
+      if (alreadyAdded[i] === elementName) {
+        count--;
+        vm = true;
+      }
+    }
 
-    newDiv.innerHTML = `
+    alreadyAdded.push(elementName);
+
+    const idname = elementName + "count";
+
+    if (vm) {
+      const update = document.getElementById(idname);
+      console.log(update);
+      const newSpan = document.createElement("span");
+      newSpan.innerHTML = `<span id="${idname}"> ${count}</span>`;
+      update?.parentNode?.replaceChild(newSpan, update);
+    } else {
+      const newDiv = document.createElement("div");
+
+      newDiv.innerHTML = `
     <div id="admin-generated-main" class="admin-generated-main">
-      <div class="admin-generated-inner"><span>${elementName}</span><span> - 1</span></div>
+      <div class="admin-generated-inner"><span>${elementName}</span><span id="${idname}"> ${count}</span></div>
     </div>`;
-
-    const parent1 = document.getElementById("admin-generated-parent");
-
-    parent1?.appendChild(newDiv);
+      const parent1 = document.getElementById("admin-generated-parent");
+      parent1?.appendChild(newDiv);
+    }
 
     termekek.map((t) => {
       if (t.nev === elementName) {
