@@ -50,7 +50,7 @@ function TermekekTable() {
   // Pagination //////////////////////////////////////////
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(4);
+  const [recordsPerPage] = useState(5);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;

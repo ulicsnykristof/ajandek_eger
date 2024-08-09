@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Input from "./Input";
 import { useForm, FormProvider } from "react-hook-form";
+import ExcelImport from "./ExcelImport";
 
 function UploadImg() {
   const [file, setFile] = useState<File | undefined>();
@@ -152,6 +153,8 @@ function UploadImg() {
           </form>
         </FormProvider>
       </div>
+
+      <ExcelImport />
     </>
   );
 }
