@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import GetImage from "../termekek-page/GetImage";
 import { MouseEvent } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 function AdministrationPage() {
   let inputs: any[] = [];
@@ -22,7 +22,7 @@ function AdministrationPage() {
     meret: any;
   };
 
-  const [temp, setTemp] = useState<Temp>({
+  const [temp] = useState<Temp>({
     id: "",
     cikkszam: "",
     vonalkod: "",
