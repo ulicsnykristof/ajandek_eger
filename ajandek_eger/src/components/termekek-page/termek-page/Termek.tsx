@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import TermekImage from "./TermekImage";
 
 function Termek() {
   const [sParam] = useSearchParams();
@@ -101,201 +102,237 @@ function Termek() {
 
   return (
     <>
-      <h4 className="termek-details-header">Termék adatok</h4>
-      {termek.map(
-        (t) => (
-          (inputs.id = t.id),
-          (
-            <div key={t.cikkszam} className="termek-details-main-div">
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Cikkszam: </p>
+      <div className="termek-details-main-grid">
+        <div>
+          <h4 className="termek-details-header">Termék adatok</h4>
+
+          {termek.map(
+            (t) => (
+              (inputs.id = t.id),
+              (
+                <div key={t.cikkszam} className="termek-details-main-div">
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Cikkszam: </p>
+                    </div>
+                    <div>
+                      {errors.cikkszam && touched.cikkszam ? (
+                        <p>{errors.cikkszam}</p>
+                      ) : null}
+                      <input
+                        className="termek-details-input"
+                        type="text"
+                        name="cikkszam"
+                        onChange={(event) => {
+                          setInputs({
+                            ...inputs,
+                            cikkszam: event.target.value,
+                          });
+                          setErrors(
+                            validate({
+                              ...inputs,
+                              cikkszam: event.target.value,
+                            })
+                          );
+                        }}
+                        defaultValue={inputs.cikkszam}
+                        onBlur={() =>
+                          setTouched({ ...touched, cikkszam: true })
+                        }
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Vonalkód: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="vonalkod"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, vonalkod: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, vonalkod: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.vonalkod}
+                      onBlur={() => setTouched({ ...touched, vonalkod: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Név: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="nev"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, nev: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, nev: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.nev}
+                      onBlur={() => setTouched({ ...touched, nev: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Nettó eladási ár: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="eladarnetto"
+                      onChange={(event) => {
+                        setInputs({
+                          ...inputs,
+                          eladarnetto: event.target.value,
+                        });
+                        setErrors(
+                          validate({
+                            ...inputs,
+                            eladarnetto: event.target.value,
+                          })
+                        );
+                      }}
+                      defaultValue={t.eladarnetto}
+                      onBlur={() =>
+                        setTouched({ ...touched, eladarnetto: true })
+                      }
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Bruttó eladási ár: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="eladarbrutto"
+                      onChange={(event) => {
+                        setInputs({
+                          ...inputs,
+                          eladarbrutto: event.target.value,
+                        });
+                      }}
+                      defaultValue={t.eladarbrutto}
+                      onBlur={() =>
+                        setTouched({ ...touched, eladarbrutto: true })
+                      }
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Darabszám: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="db"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, db: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, db: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.db}
+                      onBlur={() => setTouched({ ...touched, db: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Kritikus darabszám: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="db"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, fogyas: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, fogyas: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.fogyas}
+                      onBlur={() => setTouched({ ...touched, fogyas: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Tipus: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="tipus"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, tipus: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, tipus: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.tipus}
+                      onBlur={() => setTouched({ ...touched, tipus: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Szín: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="szin"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, szin: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, szin: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.szin}
+                      onBlur={() => setTouched({ ...touched, szin: true })}
+                    />
+                  </div>
+                  <div className="termek-details-div">
+                    <div className="termek-details-p">
+                      <p>Méret: </p>
+                    </div>
+                    <input
+                      className="termek-details-input"
+                      type="text"
+                      name="meret"
+                      onChange={(event) => {
+                        setInputs({ ...inputs, meret: event.target.value });
+                        setErrors(
+                          validate({ ...inputs, meret: event.target.value })
+                        );
+                      }}
+                      defaultValue={t.meret}
+                      onBlur={() => setTouched({ ...touched, meret: true })}
+                    />
+                  </div>
+                  <div className="termek-details-button-div">
+                    <button
+                      onClick={onSubmit}
+                      className="termek-details-button"
+                    >
+                      Módosítás
+                    </button>
+                    <button className="termek-details-button">Törlés</button>
+                  </div>
                 </div>
-                <div>
-                  {errors.cikkszam && touched.cikkszam ? (
-                    <p>{errors.cikkszam}</p>
-                  ) : null}
-                  <input
-                    className="termek-details-input"
-                    type="text"
-                    name="cikkszam"
-                    onChange={(event) => {
-                      setInputs({ ...inputs, cikkszam: event.target.value });
-                      setErrors(
-                        validate({ ...inputs, cikkszam: event.target.value })
-                      );
-                    }}
-                    defaultValue={inputs.cikkszam}
-                    onBlur={() => setTouched({ ...touched, cikkszam: true })}
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Vonalkód: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="vonalkod"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, vonalkod: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, vonalkod: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.vonalkod}
-                  onBlur={() => setTouched({ ...touched, vonalkod: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Név: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="nev"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, nev: event.target.value });
-                    setErrors(validate({ ...inputs, nev: event.target.value }));
-                  }}
-                  defaultValue={t.nev}
-                  onBlur={() => setTouched({ ...touched, nev: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Nettó eladási ár: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="eladarnetto"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, eladarnetto: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, eladarnetto: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.eladarnetto}
-                  onBlur={() => setTouched({ ...touched, eladarnetto: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Bruttó eladási ár: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="eladarbrutto"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, eladarbrutto: event.target.value });
-                  }}
-                  defaultValue={t.eladarbrutto}
-                  onBlur={() => setTouched({ ...touched, eladarbrutto: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Darabszám: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="db"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, db: event.target.value });
-                    setErrors(validate({ ...inputs, db: event.target.value }));
-                  }}
-                  defaultValue={t.db}
-                  onBlur={() => setTouched({ ...touched, db: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Kritikus darabszám: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="db"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, fogyas: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, fogyas: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.fogyas}
-                  onBlur={() => setTouched({ ...touched, fogyas: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Tipus: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="tipus"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, tipus: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, tipus: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.tipus}
-                  onBlur={() => setTouched({ ...touched, tipus: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Szín: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="szin"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, szin: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, szin: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.szin}
-                  onBlur={() => setTouched({ ...touched, szin: true })}
-                />
-              </div>
-              <div className="termek-details-div">
-                <div className="termek-details-p">
-                  <p>Méret: </p>
-                </div>
-                <input
-                  className="termek-details-input"
-                  type="text"
-                  name="meret"
-                  onChange={(event) => {
-                    setInputs({ ...inputs, meret: event.target.value });
-                    setErrors(
-                      validate({ ...inputs, meret: event.target.value })
-                    );
-                  }}
-                  defaultValue={t.meret}
-                  onBlur={() => setTouched({ ...touched, meret: true })}
-                />
-              </div>
-              <div className="termek-details-button-div">
-                <button onClick={onSubmit} className="termek-details-button">
-                  Módosítás
-                </button>
-                <button className="termek-details-button">Törlés</button>
-              </div>
-            </div>
-          )
-        )
-      )}
+              )
+            )
+          )}
+        </div>
+        <div>
+          <TermekImage />
+        </div>
+      </div>
     </>
   );
 }
