@@ -152,9 +152,8 @@ function UploadImg() {
             </Button>
           </form>
         </FormProvider>
+        <ExcelImport />
       </div>
-
-      <ExcelImport />
     </>
   );
 }
