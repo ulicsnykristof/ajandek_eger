@@ -1,16 +1,14 @@
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import * as XLSX from "xlsx";
+import axios from "axios";
 
 function ExcelImport() {
-  // onchange states
+  // onchange states ////////////////////////////////////////////////
   const [excelFile, setExcelFile] = useState(null);
   const [typeError, setTypeError] = useState("");
 
-  // submit state
-  const [excelData, setExcelData] = useState(null);
-
-  // onchange event
+  // onchange event /////////////////////////////////////////////////
   const handleFile = (e: any) => {
     let selectedFile = e.target.files[0];
     let fileTypes = [
@@ -33,7 +31,7 @@ function ExcelImport() {
     }
   };
 
-  // submit event
+  // submit event //////////////////////////////////////////////////
   const handleFileSubmit = (e: any) => {
     e.preventDefault();
     if (excelFile !== null) {
@@ -42,6 +40,15 @@ function ExcelImport() {
       const worksheet = workbook.Sheets[worksheetName];
       const data = XLSX.utils.sheet_to_json(worksheet);
       console.log(data);
+
+      data.map(async (i) => {
+        try {
+          await axios.post("http://localhost:8080/addTermek", i);
+        } catch (err) {
+          console.log("Can't upload excel");
+          console.log(err);
+        }
+      });
     }
   };
 
