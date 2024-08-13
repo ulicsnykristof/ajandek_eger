@@ -17,6 +17,16 @@
   padding-top: 30px;  
 }
 
+.termek-details-main-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.termek-details-img {
+  margin-top: 50px;
+}
+
 .termek-details-div {
   display: flex;
   flex-direction: row;
