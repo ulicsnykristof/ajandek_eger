@@ -1,10 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 import GetImage from "../GetImage";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
 
 function TermekImage() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setShow(true);
+  };
+
   const [sParam] = useSearchParams();
   const cikkszam = sParam.get("cikkszam");
 
@@ -19,6 +26,7 @@ function TermekImage() {
   }
 
   const onSubmit = async () => {
+    setShow(false);
     if (typeof file === "undefined") return;
     const formData = new FormData();
     fileName = formData.get("upload-file")!;
@@ -26,7 +34,7 @@ function TermekImage() {
     if (cikkszam != null) {
       formData.append("cikkszam", cikkszam);
     }
-    await fetch("http://localhost:8080/uploadImage", {
+    await fetch("http://localhost:8080/changeImage", {
       method: "POST",
       body: formData,
     });
@@ -40,9 +48,24 @@ function TermekImage() {
         <br />
 
         <input type="file" name="image" onChange={handleOnChange} />
-        <Button type="submit" onClick={onSubmit}>
+        <Button type="submit" onClick={handleFormSubmit}>
           Kép Módosítása
         </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Kép módosítása</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Biztos módosítja a képet?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Mégse
+            </Button>
+            <Button variant="primary" onClick={onSubmit}>
+              Módosítása
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </>
   );
