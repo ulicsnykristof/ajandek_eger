@@ -3,13 +3,22 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import TermekImage from "./TermekImage";
+import { Button, Modal } from "react-bootstrap";
 
 function Termek() {
   const [sParam] = useSearchParams();
   const cikkszam = sParam.get("cikkszam");
 
-  ////////////////////////////////////////////////////////////////
+  // Confirmation modal init //////////////////////////////////////////////////////////////
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setShow(true);
+  };
+
+  ///////////////////////////////////////////////////////////////
   const [termek, setTermek] = useState<any[]>([]);
   useEffect(() => {
     const fetchAllTermek = async () => {
@@ -98,6 +107,7 @@ function Termek() {
       console.log(errors);
       console.log("Cant submit");
     }
+    setShow(false);
   });
 
   return (
@@ -317,7 +327,7 @@ function Termek() {
                   </div>
                   <div className="termek-details-button-div">
                     <button
-                      onClick={onSubmit}
+                      onClick={handleFormSubmit}
                       className="termek-details-button"
                     >
                       Módosítás
@@ -333,6 +343,20 @@ function Termek() {
           <TermekImage />
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Termék módosítása</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Biztos módosítja a termék adatait?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Mégse
+          </Button>
+          <Button variant="primary" onClick={onSubmit}>
+            Módosítása
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
