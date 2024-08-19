@@ -4,10 +4,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { MouseEvent } from "react";
 import GetImage from "./GetImage";
+import Pagination from "../pagination/Pagination";
 
 function TermekekTable() {
   // On 'szerkeszt' button click navigate to 'termekek' page
-
   const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
@@ -19,7 +19,6 @@ function TermekekTable() {
   };
 
   // On 'törlés' button clicks, deletes the selected item
-
   const handleClickDelete = async (e: MouseEvent<HTMLElement>) => {
     const btnid = e.currentTarget.id;
 
@@ -32,8 +31,7 @@ function TermekekTable() {
     } catch (err) {}
   };
 
-  // Get all data from database to 'termekek' /////////////
-
+  // Get all data from database to 'termekek'
   const [termekek, setTermekek] = useState<any[]>([]);
   useEffect(() => {
     const fetchAllPlanet = async () => {
@@ -47,8 +45,7 @@ function TermekekTable() {
     fetchAllPlanet();
   }, []);
 
-  // Pagination //////////////////////////////////////////
-
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(5);
 
@@ -69,36 +66,13 @@ function TermekekTable() {
   return (
     <>
       <div className="termek-table-main">
-        <nav className="termek-table-pagination">
-          <ul className="pagination justify-content-center">
-            <li className="page-item">
-              <a className="page-link" onClick={goToPrevPage} href="#">
-                Előző
-              </a>
-            </li>
-            {pageNumbers.map((pgNumber) => (
-              <li
-                key={pgNumber}
-                className={`page-item ${
-                  currentPage == pgNumber ? "active" : ""
-                } `}
-              >
-                <a
-                  onClick={() => setCurrentPage(pgNumber)}
-                  className="page-link"
-                  href="#"
-                >
-                  {pgNumber}
-                </a>
-              </li>
-            ))}
-            <li className="page-item">
-              <a className="page-link" onClick={goToNextPage} href="#">
-                Következő
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination
+          pageNumbers={pageNumbers}
+          goToNextPage={goToNextPage}
+          goToPrevPage={goToPrevPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
 
         <Table responsive style={{ width: "800px" }}>
           <tbody>
