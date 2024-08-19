@@ -4,6 +4,7 @@ import { Button, Table } from "react-bootstrap";
 import GetImage from "../termekek-page/GetImage";
 import { MouseEvent } from "react";
 import { useForm } from "react-hook-form";
+import Pagination from "../pagination/Pagination";
 
 function AdministrationPage() {
   let inputs: any[] = [];
@@ -189,36 +190,13 @@ function AdministrationPage() {
     <>
       <div className="admin-main-grid">
         <div className="admin-in-left-div">
-          <nav className="termek-table-pagination">
-            <ul className="pagination justify-content-center">
-              <li className="page-item">
-                <a className="page-link" onClick={goToPrevPage} href="#">
-                  Előző
-                </a>
-              </li>
-              {pageNumbers.map((pgNumber) => (
-                <li
-                  key={pgNumber}
-                  className={`page-item ${
-                    currentPage == pgNumber ? "active" : ""
-                  } `}
-                >
-                  <a
-                    onClick={() => setCurrentPage(pgNumber)}
-                    className="page-link"
-                    href="#"
-                  >
-                    {pgNumber}
-                  </a>
-                </li>
-              ))}
-              <li className="page-item">
-                <a className="page-link" onClick={goToNextPage} href="#">
-                  Következő
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <Pagination
+            pageNumbers={pageNumbers}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
 
           <div className="admin-in-table">
             <Table responsive style={{ width: "800px" }}>
