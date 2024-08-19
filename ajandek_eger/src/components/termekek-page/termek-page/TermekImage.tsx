@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import GetImage from "../GetImage";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import ConfirmationModal from "../../confirmation-modal/ConfirmationModal";
 
 function TermekImage() {
   const [show, setShow] = useState(false);
@@ -52,20 +53,15 @@ function TermekImage() {
           Kép Módosítása
         </Button>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Kép módosítása</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Biztos módosítja a képet?</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Mégse
-            </Button>
-            <Button variant="primary" onClick={onSubmit}>
-              Módosítása
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <ConfirmationModal
+          show={show}
+          handleClose={handleClose}
+          onSubmit={onSubmit}
+          moadlTitle="Kép módosítása"
+          moadlBody="Biztosan módosítja a képet?"
+          moadlCancel="Mégse"
+          moadlConfirm="Módosítás"
+        />
       </div>
     </>
   );

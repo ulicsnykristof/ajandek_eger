@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import TermekImage from "./TermekImage";
-import { Button, Modal } from "react-bootstrap";
+import ConfirmationModal from "../../confirmation-modal/ConfirmationModal";
 
 function Termek() {
   const [sParam] = useSearchParams();
@@ -343,20 +343,15 @@ function Termek() {
           <TermekImage />
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Termék módosítása</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Biztos módosítja a termék adatait?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Mégse
-          </Button>
-          <Button variant="primary" onClick={onSubmit}>
-            Módosítása
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ConfirmationModal
+        show={show}
+        handleClose={handleClose}
+        onSubmit={onSubmit}
+        moadlTitle="Termék módosítása"
+        moadlBody="Biztosan módosítja a terméket?"
+        moadlCancel="Mégse"
+        moadlConfirm="Módosítás"
+      />
     </>
   );
 }
