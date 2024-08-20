@@ -79,7 +79,7 @@ function TermekekTable() {
             {currentRecords.map((termek) => (
               <tr key={termek.cikkszam + "00"} style={{ height: "100px" }}>
                 <td width={100}>
-                  <GetImage ck={termek.cikkszam} />
+                  <GetImage ck={termek.cikkszam} width="100px" height="100px" />
                 </td>
                 <td width={300}>
                   <p>{termek.nev}</p>

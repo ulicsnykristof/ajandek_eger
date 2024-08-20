@@ -22,15 +22,20 @@ class GetImage extends Component<any, any> {
   render() {
     if (this.state.source != null) {
       return (
-        <img src={this.state.source} alt="kep" width="100px" height="100px" />
+        <img
+          src={this.state.source}
+          alt="kep"
+          width={this.props.width}
+          height={this.props.height}
+        />
       );
     } else {
       return (
         <img
           src="../src/assets/no_image.jpg"
           alt="kep"
-          width="100px"
-          height="100px"
+          width={this.props.width}
+          height={this.props.height}
         />
       );
     }
