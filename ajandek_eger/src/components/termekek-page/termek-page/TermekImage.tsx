@@ -45,7 +45,8 @@ function TermekImage() {
   return (
     <>
       <div className="termek-details-img">
-        <GetImage ck={cikkszam} />
+        <GetImage ck={cikkszam} width="300px" height="300px" />
+        <br />
         <br />
 
         <input type="file" name="image" onChange={handleOnChange} />
