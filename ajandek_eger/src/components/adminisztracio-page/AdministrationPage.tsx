@@ -154,7 +154,7 @@ function AdministrationPage() {
     window.location.reload();
   }
 
-  /////////////////////////////////////////////////////////////////////////
+  // Update
 
   const methods = useForm();
   const uploadItems = methods.handleSubmit(async () => {
@@ -168,7 +168,7 @@ function AdministrationPage() {
     window.location.reload();
   });
 
-  //////////////////////////////////////////////////////////////////////////
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(4);
 
