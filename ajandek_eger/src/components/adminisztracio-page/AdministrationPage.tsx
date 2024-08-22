@@ -204,7 +204,11 @@ function AdministrationPage() {
                 {currentRecords.map((termek) => (
                   <tr className="admin-table-row" key={termek.cikkszam + "00"}>
                     <td className="admin-table-td-img">
-                      <GetImage ck={termek.cikkszam} />
+                      <GetImage
+                        ck={termek.cikkszam}
+                        width="100px"
+                        height="100px"
+                      />
                     </td>
                     <td className="admin-table-td-nev">
                       <p className="admin-table-p-nev">{termek.nev}</p>
