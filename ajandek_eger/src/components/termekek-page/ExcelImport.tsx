@@ -2,13 +2,14 @@ import { Button } from "react-bootstrap";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 import axios from "axios";
+import AlertModal from "../confirmation-modal/AlertModal";
 
 function ExcelImport() {
-  // onchange states ////////////////////////////////////////////////
+  // onchange states
   const [excelFile, setExcelFile] = useState(null);
   const [typeError, setTypeError] = useState("");
 
-  // onchange event /////////////////////////////////////////////////
+  // onchange event
   const handleFile = (e: any) => {
     let selectedFile = e.target.files[0];
     let fileTypes = [
@@ -23,7 +24,7 @@ function ExcelImport() {
           setExcelFile(e.target.result);
         };
       } else {
-        setTypeError("Please select only excel files");
+        setTypeError("Nem megmelelő formátumú fájl");
         setExcelFile(null);
       }
     } else {
@@ -31,7 +32,14 @@ function ExcelImport() {
     }
   };
 
-  // submit event //////////////////////////////////////////////////
+  // modal setup
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  // submit event
+  //let goodFormat = true;
+  let [goodFormat, setGoodFormat] = useState(true);
+
   const handleFileSubmit = (e: any) => {
     e.preventDefault();
     if (excelFile !== null) {
@@ -41,14 +49,39 @@ function ExcelImport() {
       const data = XLSX.utils.sheet_to_json(worksheet);
       console.log(data);
 
-      data.map(async (i) => {
-        try {
-          await axios.post("http://localhost:8080/addTermek", i);
-        } catch (err) {
-          console.log("Can't upload excel");
-          console.log(err);
+      data.map((d: any) => {
+        if (
+          typeof d.cikkszam === "undefined" ||
+          typeof d.vonalkod === "undefined" ||
+          typeof d.nev === "undefined" ||
+          typeof d.eladarnetto === "undefined" ||
+          typeof d.eladarbrutto === "undefined" ||
+          typeof d.fogyas === "undefined" ||
+          typeof d.tipus === "undefined" ||
+          typeof d.szin === "undefined" ||
+          typeof d.meret === "undefined"
+        ) {
+          setGoodFormat(false);
+          goodFormat = false;
+          console.log(goodFormat);
         }
       });
+      console.log(goodFormat);
+      if (goodFormat) {
+        data.map(async (i) => {
+          try {
+            await axios.post("http://localhost:8080/addTermek", i);
+          } catch (err) {
+            console.log("Can't upload excel");
+            console.log(err);
+          }
+        });
+
+        console.log("excel uploaded successfully");
+      } else {
+        console.log("Can't upload excel because of bad format");
+      }
+      setShow(true);
     }
   };
 
@@ -65,6 +98,16 @@ function ExcelImport() {
           )}
         </form>
       </div>
+      <AlertModal
+        show={show}
+        handleClose={handleClose}
+        moadlTitle="Excel import"
+        moadlBody={
+          goodFormat
+            ? "Sikeres feltöltés"
+            : "Sikertelen feltöltés, rossz excel formátum"
+        }
+      />
     </>
   );
 }
