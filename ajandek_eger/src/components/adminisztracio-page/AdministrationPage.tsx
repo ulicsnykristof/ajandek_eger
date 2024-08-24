@@ -168,13 +168,18 @@ function AdministrationPage() {
     window.location.reload();
   });
 
+  // Search
+  const [query, setQuery] = useState("");
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(4);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = termekek.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = termekek
+    .filter((i: any) => i.nev.toLowerCase().includes(query))
+    .slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(termekek.length / recordsPerPage);
 
   const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
@@ -184,13 +189,6 @@ function AdministrationPage() {
   };
   const goToPrevPage = () => {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
-  };
-
-  // Search
-  const [query, setQuery] = useState("");
-
-  const search = (data: any) => {
-    return data.filter((i: any) => i.nev.toLowerCase().includes(query));
   };
 
   return (
@@ -212,7 +210,7 @@ function AdministrationPage() {
           <div className="admin-in-table">
             <Table responsive style={{ width: "800px" }}>
               <tbody>
-                {search(currentRecords).map((termek: any) => (
+                {currentRecords.map((termek: any) => (
                   <tr className="admin-table-row" key={termek.cikkszam}>
                     <td className="admin-table-td-img">
                       <GetImage

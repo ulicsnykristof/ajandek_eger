@@ -45,13 +45,18 @@ function TermekekTable() {
     fetchAllPlanet();
   }, []);
 
+  // search
+  const [query, setQuery] = useState("");
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(5);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = termekek.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = termekek
+    .filter((i: any) => i.nev.toLowerCase().includes(query))
+    .slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(termekek.length / recordsPerPage);
 
   const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
@@ -73,10 +78,14 @@ function TermekekTable() {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-
+        <input
+          type="text"
+          placeholder="Keresés..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <Table responsive style={{ width: "800px" }}>
           <tbody>
-            {currentRecords.map((termek) => (
+            {currentRecords.map((termek: any) => (
               <tr key={termek.cikkszam + "00"} style={{ height: "100px" }}>
                 <td width={100}>
                   <GetImage ck={termek.cikkszam} width="100px" height="100px" />
