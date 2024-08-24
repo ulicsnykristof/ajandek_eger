@@ -189,6 +189,10 @@ function AdministrationPage() {
   // Search
   const [query, setQuery] = useState("");
 
+  const search = (data: any) => {
+    return data.filter((i: any) => i.nev.toLowerCase().includes(query));
+  };
+
   return (
     <>
       <div className="admin-main-grid">
@@ -208,46 +212,44 @@ function AdministrationPage() {
           <div className="admin-in-table">
             <Table responsive style={{ width: "800px" }}>
               <tbody>
-                {currentRecords
-                  .filter((t) => t.nev.toLowerCase().includes(query))
-                  .map((termek) => (
-                    <tr className="admin-table-row" key={termek.cikkszam}>
-                      <td className="admin-table-td-img">
-                        <GetImage
-                          ck={termek.cikkszam}
-                          width="100px"
-                          height="100px"
-                        />
-                      </td>
-                      <td className="admin-table-td-nev">
-                        <p className="admin-table-p-nev">{termek.nev}</p>
-                      </td>
-                      <td className="admin-table-td-db">
-                        <p className="admin-table-p-db">{termek.db} db </p>
-                      </td>
-                      <td className="admin-table-td-ar">
-                        <p className="admin-table-p-ar">
-                          {termek.eladarbrutto} Ft
-                        </p>
-                      </td>
-                      <td className="admin-table-td-btn">
-                        <Button
-                          onClick={addElement}
-                          className="admin-table-button-plus"
-                          id={termek.nev}
-                        >
-                          <p className="admin-table-td-btn-text">+</p>
-                        </Button>
-                        <Button
-                          onClick={subElement}
-                          className="admin-table-button-minus"
-                          id={termek.nev}
-                        >
-                          <p className="admin-table-td-btn-text">-</p>
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                {search(currentRecords).map((termek: any) => (
+                  <tr className="admin-table-row" key={termek.cikkszam}>
+                    <td className="admin-table-td-img">
+                      <GetImage
+                        ck={termek.cikkszam}
+                        width="100px"
+                        height="100px"
+                      />
+                    </td>
+                    <td className="admin-table-td-nev">
+                      <p className="admin-table-p-nev">{termek.nev}</p>
+                    </td>
+                    <td className="admin-table-td-db">
+                      <p className="admin-table-p-db">{termek.db} db </p>
+                    </td>
+                    <td className="admin-table-td-ar">
+                      <p className="admin-table-p-ar">
+                        {termek.eladarbrutto} Ft
+                      </p>
+                    </td>
+                    <td className="admin-table-td-btn">
+                      <Button
+                        onClick={addElement}
+                        className="admin-table-button-plus"
+                        id={termek.nev}
+                      >
+                        <p className="admin-table-td-btn-text">+</p>
+                      </Button>
+                      <Button
+                        onClick={subElement}
+                        className="admin-table-button-minus"
+                        id={termek.nev}
+                      >
+                        <p className="admin-table-td-btn-text">-</p>
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </div>
