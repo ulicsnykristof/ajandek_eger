@@ -63,10 +63,8 @@ function ExcelImport() {
         ) {
           setGoodFormat(false);
           goodFormat = false;
-          console.log(goodFormat);
         }
       });
-      console.log(goodFormat);
       if (goodFormat) {
         data.map(async (i) => {
           try {
