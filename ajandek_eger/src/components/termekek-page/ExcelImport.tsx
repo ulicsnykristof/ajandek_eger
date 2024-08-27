@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import axios from "axios";
 import AlertModal from "../confirmation-modal/AlertModal";
@@ -37,8 +37,23 @@ function ExcelImport() {
   const handleClose = () => setShow(false);
 
   // submit event
-  //let goodFormat = true;
   let [goodFormat, setGoodFormat] = useState(true);
+
+  //
+  const [newTermek] = useState<any[]>([]);
+  const [termekek, setTermekek] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchAllPlanet = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/all");
+        setTermekek(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllPlanet();
+  }, []);
 
   const handleFileSubmit = (e: any) => {
     e.preventDefault();
@@ -49,6 +64,7 @@ function ExcelImport() {
       const data = XLSX.utils.sheet_to_json(worksheet);
       console.log(data);
 
+      // check if excel format is good
       data.map((d: any) => {
         if (
           typeof d.cikkszam === "undefined" ||
@@ -65,8 +81,24 @@ function ExcelImport() {
           goodFormat = false;
         }
       });
+
+      // if item alredy exist in database, its not added again
+      let alreadyin = false;
       if (goodFormat) {
-        data.map(async (i) => {
+        data.map((d: any) => {
+          alreadyin = false;
+          termekek.map((t: any) => {
+            if (t.cikkszam === d.cikkszam) {
+              alreadyin = true;
+            }
+          });
+          if (!alreadyin) {
+            newTermek.push(d);
+          }
+        });
+
+        // upload items from excel
+        newTermek.map(async (i) => {
           try {
             await axios.post("http://localhost:8080/addTermek", i);
           } catch (err) {
@@ -75,6 +107,7 @@ function ExcelImport() {
           }
         });
 
+        console.log(newTermek);
         console.log("excel uploaded successfully");
       } else {
         console.log("Can't upload excel because of bad format");
