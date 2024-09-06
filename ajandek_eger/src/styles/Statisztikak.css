@@ -16,3 +16,27 @@
   border-radius: 4px;
   height: 500px;
 }
+
+.stat-in-title {
+  margin-top: 6px;
+  margin-left: 8px;
+}
+
+.stat-bottom-div {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 50px;
+  row-gap: 100px;
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 40px;
+}
+
+.stat-bottom-in-div {
+  border-width: 1px;
+  border-style: solid;
+  background-color: rgb(233, 233, 233);
+  border-radius: 4px;
+  height: 500px;
+}

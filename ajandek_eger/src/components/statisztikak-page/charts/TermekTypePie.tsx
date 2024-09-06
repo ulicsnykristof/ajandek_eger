@@ -5,8 +5,10 @@ function TermekTypePie(props: any) {
     <>
       <ResponsivePie
         data={props.data}
-        margin={{ top: 30, right: 70, bottom: 30, left: 70 }}
+        margin={{ top: 0, right: 100, bottom: 100, left: 100 }}
         borderWidth={1}
+        startAngle={0}
+        innerRadius={0.3}
         borderColor={{
           from: "color",
           modifiers: [["darker", 0.2]],
