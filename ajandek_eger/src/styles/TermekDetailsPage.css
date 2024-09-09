@@ -4,7 +4,7 @@
 }
 
 .termek-details-input {
-  width: 400px;
+  width: 384px;
   margin-left: 12px;
   margin-bottom: 20px;
 }
@@ -13,8 +13,11 @@
   margin-left: 40px;
   margin-right: 40px;
   width: 560px;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(233, 233, 233);
   padding-top: 30px;  
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
 }
 
 .termek-details-main-grid{
