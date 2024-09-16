@@ -5,12 +5,14 @@ import AdministrationPage from "./components/adminisztracio-page/AdministrationP
 import TermekekPage from "./components/termekek-page/TermekekPage";
 import StatisztikakPage from "./components/statisztikak-page/StatisztikakPage";
 import Termek from "./components/termekek-page/termek-page/Termek";
+import Login from "./login/Login";
 function App() {
   return (
     <>
       <TopNavigationBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/termekek" element={<TermekekPage />} />
         <Route path="/termekek/termek/*" element={<Termek />} />
         <Route path="/adminisztracio/*" element={<AdministrationPage />} />
