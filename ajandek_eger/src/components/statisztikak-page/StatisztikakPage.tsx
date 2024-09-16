@@ -19,164 +19,104 @@ function StatisztikakPage() {
 
   const data2 = [
     {
-      id: "us",
+      id: "Fa Kirakó Játék",
       color: "hsl(289, 70%, 50%)",
       data: [
         {
-          x: "plane",
-          y: 115,
+          x: "Hétfő",
+          y: 1,
         },
         {
-          x: "helicopter",
-          y: 22,
-        },
-        {
-          x: "boat",
-          y: 144,
-        },
-        {
-          x: "train",
-          y: 64,
-        },
-        {
-          x: "subway",
-          y: 114,
-        },
-        {
-          x: "bus",
-          y: 104,
-        },
-        {
-          x: "car",
-          y: 199,
-        },
-        {
-          x: "moto",
-          y: 147,
-        },
-        {
-          x: "bicycle",
+          x: "Kedd",
           y: 2,
         },
         {
-          x: "horse",
-          y: 97,
-        },
-        {
-          x: "skateboard",
-          y: 268,
-        },
-        {
-          x: "others",
-          y: 132,
-        },
-      ],
-    },
-    {
-      id: "germany",
-      color: "hsl(123, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 95,
-        },
-        {
-          x: "helicopter",
-          y: 258,
-        },
-        {
-          x: "boat",
-          y: 116,
-        },
-        {
-          x: "train",
-          y: 150,
-        },
-        {
-          x: "subway",
-          y: 178,
-        },
-        {
-          x: "bus",
-          y: 255,
-        },
-        {
-          x: "car",
-          y: 180,
-        },
-        {
-          x: "moto",
-          y: 280,
-        },
-        {
-          x: "bicycle",
-          y: 154,
-        },
-        {
-          x: "horse",
-          y: 182,
-        },
-        {
-          x: "skateboard",
-          y: 215,
-        },
-        {
-          x: "others",
-          y: 277,
-        },
-      ],
-    },
-    {
-      id: "norway",
-      color: "hsl(100, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 131,
-        },
-        {
-          x: "helicopter",
+          x: "Szerda",
           y: 4,
         },
         {
-          x: "boat",
-          y: 281,
+          x: "Csütörtök",
+          y: 1,
         },
         {
-          x: "train",
+          x: "Péntek",
+          y: 5,
+        },
+        {
+          x: "Szombat",
+          y: 8,
+        },
+        {
+          x: "Vasárnap",
+          y: 6,
+        },
+      ],
+    },
+    {
+      id: "Hangszer Játék",
+      color: "hsl(123, 70%, 50%)",
+      data: [
+        {
+          x: "Hétfő",
+          y: 1,
+        },
+        {
+          x: "Kedd",
+          y: 3,
+        },
+        {
+          x: "Szerda",
+          y: 2,
+        },
+        {
+          x: "Csütörtök",
+          y: 2,
+        },
+        {
+          x: "Péntek",
+          y: 1,
+        },
+        {
+          x: "Szombat",
+          y: 5,
+        },
+        {
+          x: "Vasárnap",
+          y: 4,
+        },
+      ],
+    },
+    {
+      id: "Teszt",
+      color: "hsl(100, 70%, 50%)",
+      data: [
+        {
+          x: "Hétfő",
+          y: 0,
+        },
+        {
+          x: "Kedd",
+          y: 0,
+        },
+        {
+          x: "Szerda",
+          y: 2,
+        },
+        {
+          x: "Csütörtök",
+          y: 1,
+        },
+        {
+          x: "Péntek",
           y: 6,
         },
         {
-          x: "subway",
-          y: 62,
+          x: "Szombat",
+          y: 4,
         },
         {
-          x: "bus",
-          y: 222,
-        },
-        {
-          x: "car",
-          y: 119,
-        },
-        {
-          x: "moto",
-          y: 23,
-        },
-        {
-          x: "bicycle",
-          y: 54,
-        },
-        {
-          x: "horse",
-          y: 16,
-        },
-        {
-          x: "skateboard",
-          y: 295,
-        },
-        {
-          x: "others",
-          y: 153,
+          x: "Vasárnap",
+          y: 4,
         },
       ],
     },
@@ -189,7 +129,7 @@ function StatisztikakPage() {
       <div className="stat-main-grid">
         <div className="stat-in-div">
           <h3 className="stat-in-title">Termék Típusok</h3>
-          <p>Össztermék szám: {datal}</p>
+          <p>Össz terméktípus: {datal}</p>
           <TermekTypePie data={termekek} />
         </div>
         <div className="stat-in-div">
