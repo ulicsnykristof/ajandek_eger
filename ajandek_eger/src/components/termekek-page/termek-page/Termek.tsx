@@ -23,7 +23,9 @@ function Termek() {
   useEffect(() => {
     const fetchAllTermek = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/all/" + cikkszam);
+        const res = await axios.get(
+          "http://localhost:8080/public/all/" + cikkszam
+        );
         setTermek(res.data);
         inputs.cikkszam = res.data[0].cikkszam;
         inputs.nev = res.data[0].nev;
@@ -100,7 +102,7 @@ function Termek() {
       console.log("Success");
       try {
         console.log(inputs);
-        await axios.post("http://localhost:8080/updateTermek", inputs);
+        await axios.post("http://localhost:8080/public/updateTermek", inputs);
         console.log("update success");
       } catch (err) {}
     } else {
