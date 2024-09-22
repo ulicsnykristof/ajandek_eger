@@ -46,7 +46,7 @@ function ExcelImport() {
   useEffect(() => {
     const fetchAllPlanet = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/all");
+        const res = await axios.get("http://localhost:8080/public/all");
         setTermekek(res.data);
       } catch (err) {
         console.log(err);
@@ -100,7 +100,7 @@ function ExcelImport() {
         // upload items from excel
         newTermek.map(async (i) => {
           try {
-            await axios.post("http://localhost:8080/addTermek", i);
+            await axios.post("http://localhost:8080/public/addTermek", i);
           } catch (err) {
             console.log("Can't upload excel");
             console.log(err);

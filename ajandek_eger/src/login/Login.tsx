@@ -1,49 +1,87 @@
-import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
-import { Button } from "react-bootstrap";
-import AuthContext from "./AuthProvider";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UserService from "./UserService";
 import axios from "axios";
 
 function Login() {
-  const { setAuth }: any = useContext(AuthContext);
-
-  const userRef = useRef<HTMLDivElement>(null);
-  const errRef = useRef<HTMLDivElement>(null);
-
-  const [user, setUser] = useState("");
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  //const [success, setSuccess] = useState(false);
 
-  const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    const node = userRef.current as any;
-    node?.current.focus();
-  }, []);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd]);
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault;
+  /*const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      //const res = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}));
+        const userData = await UserService.login(email, password)
+        console.log(userData)
+        if (userData.token) {
+            localStorage.setItem('token', userData.token)
+            localStorage.setItem('role', userData.role)
+            navigate('/profile')
+        }else{
+            setError(userData.message)
+        }
+        
+    } catch (error) {
+        console.log(error)
+        setError(error.message)
+        setTimeout(()=>{
+            setError('');
+        }, 5000);
+    }
+}
+*/
 
-      setUser("");
-      setPwd("");
-      setSuccess(true);
-    } catch (err) {}
+  const [error, setError] = useState("");
+
+  /*
+  const handleSubmit = async (e: any) => {
+    console.log("teszt");
+    e.preventDefault;
+    try {
+      const response = await UserService.login(username, pwd);
+      console.log(response);
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("role", response.role);
+        navigate("/home");
+      } else {
+        setError(response.message);
+      }
+    } catch (error: unknown) {
+      console.log(error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  };
+*/
+
+  const handleSubmit = async () => {
+    try {
+      navigate("/home");
+      if (!username || !pwd) {
+        setError("Please enter both username and password.");
+        return;
+      }
+
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        username,
+        pwd,
+      });
+
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      setError("Invalid username or password.");
+    }
   };
 
   return (
     <>
       <div className="login-main">
-        <p
-          ref={errRef}
-          className={errMsg ? "errmsg" : "offsceen"}
-          aria-live="assertive"
-        >
+        <p className={errMsg ? "errmsg" : "offsceen"} aria-live="assertive">
           {errMsg}
         </p>
         <h1>Bejelentkezés</h1>
@@ -52,29 +90,23 @@ function Login() {
           <label htmlFor="username">Felhasználónév:</label>
           <input
             type="text"
-            id="username"
-            //ref={userRef}
             autoComplete="off"
-            onChange={(e: { target: { value: SetStateAction<string> } }) =>
-              setUser(e.target.value)
-            }
-            value={user}
-            required
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
           />
 
-          <label htmlFor="password">Jelszó:</label>
+          <label htmlFor="pwd">Jelszó:</label>
           <input
             type="password"
-            id="password"
-            onChange={(e: { target: { value: SetStateAction<string> } }) =>
-              setPwd(e.target.value)
-            }
+            onChange={(e) => setPwd(e.target.value)}
             value={pwd}
-            required
           />
 
-          <Button>Belépés</Button>
+          <button type="submit">Belépés</button>
         </form>
+        <p>
+          Nincs még felhasználói fiókja? <a href="/signup">Létrehozás</a>
+        </p>
       </div>
     </>
   );

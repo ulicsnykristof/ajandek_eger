@@ -8,7 +8,9 @@ function StatisztikakPage() {
   useEffect(() => {
     const fetchAllTermek = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/chartTermekTipus");
+        const res = await axios.get(
+          "http://localhost:8080/public/chartTermekTipus"
+        );
         setTermekek(res.data);
       } catch (err) {
         console.log(err);

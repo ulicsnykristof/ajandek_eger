@@ -6,6 +6,7 @@ import TermekekPage from "./components/termekek-page/TermekekPage";
 import StatisztikakPage from "./components/statisztikak-page/StatisztikakPage";
 import Termek from "./components/termekek-page/termek-page/Termek";
 import Login from "./login/Login";
+
 function App() {
   return (
     <>

@@ -23,11 +23,11 @@ function TermekekTable() {
     const btnid = e.currentTarget.id;
 
     try {
-      await axios.delete("http://localhost:8080/deleteTermek/" + btnid);
+      await axios.delete("http://localhost:8080/public/deleteTermek/" + btnid);
     } catch (err) {}
 
     try {
-      await axios.delete("http://localhost:8080/deleteImage/" + btnid);
+      await axios.delete("http://localhost:8080/public/deleteImage/" + btnid);
     } catch (err) {}
   };
 
@@ -36,7 +36,7 @@ function TermekekTable() {
   useEffect(() => {
     const fetchAllPlanet = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/all");
+        const res = await axios.get("http://localhost:8080/public/all");
         setTermekek(res.data);
       } catch (err) {
         console.log(err);

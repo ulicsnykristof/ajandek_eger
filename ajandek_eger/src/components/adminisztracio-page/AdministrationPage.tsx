@@ -43,7 +43,7 @@ function AdministrationPage() {
   useEffect(() => {
     const fetchAllTermek = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/all");
+        const res = await axios.get("http://localhost:8080/public/all");
         setTermekek(res.data);
         temp.nev = res.data[0].nev;
         temp.db = res.data[0].db;
@@ -161,7 +161,7 @@ function AdministrationPage() {
     console.log(inputs);
     inputs.map(async (i) => {
       try {
-        await axios.post("http://localhost:8080/updateTermek", i);
+        await axios.post("http://localhost:8080/public/updateTermek", i);
       } catch (err) {}
     });
 

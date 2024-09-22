@@ -4,7 +4,7 @@ class GetImage extends Component<any, any> {
   state = { source: null };
   componentDidMount() {
     axios
-      .get("http://localhost:8080/images/" + this.props.ck, {
+      .get("http://localhost:8080/public/images/" + this.props.ck, {
         responseType: "arraybuffer",
       })
       .then((response) => {
