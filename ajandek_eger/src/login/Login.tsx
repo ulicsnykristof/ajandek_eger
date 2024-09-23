@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "./UserService";
-import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
@@ -10,35 +9,10 @@ function Login() {
   const [errMsg, setErrMsg] = useState("");
   //const [success, setSuccess] = useState(false);
 
-  /*const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-        const userData = await UserService.login(email, password)
-        console.log(userData)
-        if (userData.token) {
-            localStorage.setItem('token', userData.token)
-            localStorage.setItem('role', userData.role)
-            navigate('/profile')
-        }else{
-            setError(userData.message)
-        }
-        
-    } catch (error) {
-        console.log(error)
-        setError(error.message)
-        setTimeout(()=>{
-            setError('');
-        }, 5000);
-    }
-}
-*/
-
   const [error, setError] = useState("");
 
-  /*
   const handleSubmit = async (e: any) => {
-    console.log("teszt");
+    navigate("/home");
     e.preventDefault;
     try {
       const response = await UserService.login(username, pwd);
@@ -46,7 +20,7 @@ function Login() {
       if (response.token) {
         localStorage.setItem("token", response.token);
         localStorage.setItem("role", response.role);
-        navigate("/home");
+        console.log(response.role);
       } else {
         setError(response.message);
       }
@@ -57,8 +31,8 @@ function Login() {
       }, 5000);
     }
   };
-*/
 
+  /*
   const handleSubmit = async () => {
     try {
       navigate("/home");
@@ -77,7 +51,7 @@ function Login() {
       setError("Invalid username or password.");
     }
   };
-
+*/
   return (
     <>
       <div className="login-main">

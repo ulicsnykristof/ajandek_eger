@@ -2,8 +2,13 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import UserService from "../login/UserService";
 
 function TopNavigationBar() {
+  const handleLogout = () => {
+    UserService.logout;
+  };
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -16,6 +21,9 @@ function TopNavigationBar() {
               <Nav.Link href="/adminisztracio">Adminisztráció</Nav.Link>
               <Nav.Link href="/statisztikak">Statisztikák</Nav.Link>
               <Nav.Link href="/statisztikak">Aktivitás</Nav.Link>
+              <Nav.Link onClick={handleLogout} href="/">
+                Kijelentkezés
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
