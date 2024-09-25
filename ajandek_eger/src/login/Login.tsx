@@ -12,11 +12,12 @@ function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: any) => {
-    navigate("/home");
     e.preventDefault;
+    navigate("/home");
     try {
       const response = await UserService.login(username, pwd);
       console.log(response);
+
       if (response.token) {
         localStorage.setItem("token", response.token);
         localStorage.setItem("role", response.role);
@@ -55,32 +56,57 @@ function Login() {
   return (
     <>
       <div className="login-main">
-        <p className={errMsg ? "errmsg" : "offsceen"} aria-live="assertive">
-          {errMsg}
-        </p>
-        <h1>Bejelentkezés</h1>
+        <div>
+          <p className={errMsg ? "errmsg" : "offsceen"} aria-live="assertive">
+            {errMsg}
+          </p>
+        </div>
+        <div className="login-form">
+          <h4>Bejelentkezés</h4>
+          <br />
+          <form onSubmit={handleSubmit}>
+            <div>
+              <div>
+                <label htmlFor="username">Felhasználónév:</label>
+              </div>
 
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Felhasználónév:</label>
-          <input
-            type="text"
-            autoComplete="off"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-
-          <label htmlFor="pwd">Jelszó:</label>
-          <input
-            type="password"
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-          />
-
-          <button type="submit">Belépés</button>
-        </form>
-        <p>
-          Nincs még felhasználói fiókja? <a href="/signup">Létrehozás</a>
-        </p>
+              <input
+                className="login-input"
+                id="username"
+                placeholder="Felhasználónév"
+                type="text"
+                autoComplete="off"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </div>
+            <div>
+              <div>
+                <label htmlFor="pwd">Jelszó:</label>
+              </div>
+              <div>
+                <input
+                  className="login-input"
+                  id="pwd"
+                  placeholder="Jelszó"
+                  type="password"
+                  onChange={(e) => setPwd(e.target.value)}
+                  value={pwd}
+                />
+              </div>
+            </div>
+            <div>
+              <button className="login-button" type="submit">
+                Belépés
+              </button>
+            </div>
+          </form>
+          <div>
+            <p>
+              Nincs még felhasználói fiókja? <a href="/signup">Létrehozás</a>
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );

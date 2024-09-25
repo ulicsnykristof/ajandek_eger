@@ -1,0 +1,25 @@
+.login-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.login-form{
+  border-width: 1px;
+  border-style: solid;
+  background-color: rgb(233, 233, 233);
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.login-input{
+  padding: 10px;
+  margin: 10px 0px;
+  width: 300px;
+}
+
+.login-button{
+  margin-top: 12px;
+  margin-bottom: 12px;
+}

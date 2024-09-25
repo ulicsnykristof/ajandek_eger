@@ -6,7 +6,7 @@ import UserService from "../login/UserService";
 
 function TopNavigationBar() {
   const handleLogout = () => {
-    UserService.logout;
+    UserService.logout();
   };
 
   return (
