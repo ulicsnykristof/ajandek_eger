@@ -35,7 +35,7 @@ function TermekImage() {
     if (cikkszam != null) {
       formData.append("cikkszam", cikkszam);
     }
-    await fetch("http://localhost:8080/changeImage", {
+    await fetch("http://localhost:8080/public/changeImage", {
       method: "POST",
       body: formData,
     });
