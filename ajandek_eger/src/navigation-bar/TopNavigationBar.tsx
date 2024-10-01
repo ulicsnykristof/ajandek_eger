@@ -3,10 +3,25 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import UserService from "../login/UserService";
+import { useState } from "react";
+import ConfirmationModal from "../components/confirmation-modal/ConfirmationModal";
+import { useNavigate } from "react-router-dom";
 
 function TopNavigationBar() {
+  const navigate = useNavigate();
+
+  // Confirmation modal setup
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setShow(true);
+  };
+
   const handleLogout = () => {
     UserService.logout();
+    setShow(false);
+    navigate("/");
   };
 
   return (
@@ -21,13 +36,24 @@ function TopNavigationBar() {
               <Nav.Link href="/adminisztracio">Adminisztráció</Nav.Link>
               <Nav.Link href="/statisztikak">Statisztikák</Nav.Link>
               <Nav.Link href="/statisztikak">Aktivitás</Nav.Link>
-              <Nav.Link onClick={handleLogout} href="/">
-                Kijelentkezés
-              </Nav.Link>
+              {UserService.isAuthenticated() && (
+                <Nav.Link onClick={handleFormSubmit} href="/">
+                  Kijelentkezés
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <ConfirmationModal
+        show={show}
+        handleClose={handleClose}
+        onSubmit={handleLogout}
+        moadlTitle="Kijelejntkezés"
+        moadlBody="Biztosan kijelentkezik?"
+        moadlCancel="Mégse"
+        moadlConfirm="Kijelentkezés"
+      />
     </>
   );
 }
