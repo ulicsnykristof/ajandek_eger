@@ -15,10 +15,25 @@ class UserService {
     }
   }
 
+  static async getYourProfile(token: any) {
+    try {
+      const response = await axios.get(
+        `${UserService.BASE_URL}/adminuser/get-profile`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return response.data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   /**AUTHENTICATION CHECKER */
   static logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("username");
   }
 
   static isAuthenticated() {

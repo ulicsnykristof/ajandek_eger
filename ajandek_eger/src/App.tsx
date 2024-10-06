@@ -7,6 +7,7 @@ import StatisztikakPage from "./components/statisztikak-page/StatisztikakPage";
 import Termek from "./components/termekek-page/termek-page/Termek";
 import Login from "./login/Login";
 import UserService from "./login/UserService";
+import ActivityPage from "./components/aktivitas-page/ActivityPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/termekek/termek/*" element={<Termek />} />
             <Route path="/adminisztracio/*" element={<AdministrationPage />} />
             <Route path="/statisztikak/*" element={<StatisztikakPage />} />
+            <Route path="/aktivitas/*" element={<ActivityPage />} />
           </>
         )}
       </Routes>

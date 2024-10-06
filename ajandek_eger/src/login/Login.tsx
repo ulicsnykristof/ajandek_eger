@@ -6,9 +6,7 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
   //const [success, setSuccess] = useState(false);
-
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: any) => {
@@ -22,6 +20,9 @@ function Login() {
         localStorage.setItem("token", response.token);
         localStorage.setItem("role", response.role);
         console.log(response.role);
+        const res = await UserService.getYourProfile(response.token);
+        console.log(res.user.username);
+        localStorage.setItem("username", res.user.username);
       } else {
         setError(response.message);
       }
@@ -53,12 +54,13 @@ function Login() {
     }
   };
 */
+
   return (
     <>
       <div className="login-main">
         <div>
-          <p className={errMsg ? "errmsg" : "offsceen"} aria-live="assertive">
-            {errMsg}
+          <p className={error ? "errmsg" : "offsceen"} aria-live="assertive">
+            {error}
           </p>
         </div>
         <div className="login-form">
