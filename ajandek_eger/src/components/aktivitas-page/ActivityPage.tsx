@@ -19,6 +19,9 @@ function ActivityPage() {
     }
   };
 
+  let dateTime = new Date();
+  console.log(dateTime.toLocaleString());
+
   return (
     <>
       <p>Name: </p>
