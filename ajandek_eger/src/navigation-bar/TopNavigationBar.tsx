@@ -36,18 +36,18 @@ function TopNavigationBar() {
               <Nav.Link href="/adminisztracio">Adminisztráció</Nav.Link>
               <Nav.Link href="/statisztikak">Statisztikák</Nav.Link>
               <Nav.Link href="/aktivitas">Aktivitás</Nav.Link>
-              {UserService.isAuthenticated() && (
-                <Nav.Link onClick={handleFormSubmit} href="/">
-                  Kijelentkezés
-                </Nav.Link>
-              )}
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             {UserService.isAuthenticated() && (
               <Navbar.Text>
-                Felhasználó: {localStorage.getItem("username")}
+                Felhasználó: {localStorage.getItem("username")} &emsp;
               </Navbar.Text>
+            )}
+            {UserService.isAuthenticated() && (
+              <Nav.Link onClick={handleFormSubmit} href="/">
+                Kijelentkezés
+              </Nav.Link>
             )}
           </Navbar.Collapse>
         </Container>
