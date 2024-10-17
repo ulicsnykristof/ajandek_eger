@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "./UserService";
+import ActivityService from "../components/activity/ActivityService";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ function Login() {
         const res = await UserService.getYourProfile(response.token);
         console.log(res.user.username);
         localStorage.setItem("username", res.user.username);
+
+        const resp = await ActivityService.addActivity("bejelentkezés");
+        console.log(resp);
       } else {
         setError(response.message);
       }
